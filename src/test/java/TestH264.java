@@ -7,12 +7,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.channels.Channels;
 import java.util.Collections;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.logging.LogManager;
 
 /**
  * Created by sannies on 23.08.2015.
  */
+
+//ffmpeg -re -i input.mp4 -c:v h264 -an -f rtp rtp://127.0.0.1:5000
+
 public class TestH264 {
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
@@ -22,7 +27,7 @@ public class TestH264 {
 
         RtpH264StreamingTrack st = new RtpH264StreamingTrack("Z2QAFUs2QCAb5/ARAAADAAEAAAMAMI8WLZY=,aEquJyw=", 5000, 96);
 
-        OutputStream os = new FileOutputStream("output.mp4");
+        OutputStream os = new FileOutputStream("output.h264");
         final FragmentedMp4Writer streamingMp4Writer = new FragmentedMp4Writer(Collections.<StreamingTrack>singletonList(st), Channels.newChannel(os));
         ExecutorService es = Executors.newCachedThreadPool();
         es.submit(st);
