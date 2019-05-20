@@ -24,8 +24,7 @@ public class TestH264 {
 
         LogManager.getLogManager().readConfiguration(TestH264.class.getResourceAsStream("/log.properties"));
 
-
-        RtpH264StreamingTrack st = new RtpH264StreamingTrack("Z2QAFUs2QCAb5/ARAAADAAEAAAMAMI8WLZY=,aEquJyw=", 5000, 96);
+        RtpH264StreamingTrack st = new RtpH264StreamingTrack("Z01AH+ygKALdgLUBAQFAAAADAEAAr8gDxgxlgA==,aO+G8g==", 5000, 96);
 
         OutputStream os = new FileOutputStream("output.h264");
         final FragmentedMp4Writer streamingMp4Writer = new FragmentedMp4Writer(Collections.<StreamingTrack>singletonList(st), Channels.newChannel(os));
